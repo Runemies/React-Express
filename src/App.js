@@ -1,6 +1,6 @@
 import { Table, Card } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 
 const App = () => {
@@ -11,9 +11,10 @@ const App = () => {
       try {
         const response = await fetch('/get_prices');
         const result = await response.json();
+        console.log("Löydetty data", result);
         setData(result);
       } catch (error) {
-        console.error(error);
+        console.error("Virhe", error);
       }
     };
     fetchData();
@@ -21,6 +22,7 @@ const App = () => {
 
   const renderTableRows = () => {
     if (!data || !data.prices) {
+      console.log("ei löydy");
       return null;
     }
 
@@ -51,7 +53,7 @@ const App = () => {
       <Card style={{ width: '16rem', backgroundColor:"#000000" }}>
         <Card.Body>
           {data ? (
-           <Table striped bordered variant="dark" size="sm">
+           <Table striped bordered variant="green" size="sm">
              <thead>
                <tr>
                   <th>Hour</th>
